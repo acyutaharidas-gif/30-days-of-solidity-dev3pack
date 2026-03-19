@@ -19,7 +19,8 @@ contract Calculator {
     }
 
     function setScientificCalculator(address _address) public onlyOwner {
-        scientificCalculatorAddress = _address;
+        require(_address != address(0), "Invalid calculator address");
+        require(_address.code.length > 0, "Address is not a contract");
     }
 
     function add(uint256 a, uint256 b) public pure returns (uint256) {

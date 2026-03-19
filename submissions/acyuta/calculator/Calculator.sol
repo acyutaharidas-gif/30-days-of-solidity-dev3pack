@@ -45,7 +45,10 @@ contract Calculator {
         uint256 base,
         uint256 exponent
     ) public view returns (uint256) {
-        ScientificCalculator scientificCalculator = ScientificCalculator(
+        require(
+            scientificCalculatorAddress != address(0),
+            "Scientific calculator not set"
+        );
             scientificCalculatorAddress
         );
         return scientificCalculator.power(base, exponent);

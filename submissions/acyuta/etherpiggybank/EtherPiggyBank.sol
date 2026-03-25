@@ -30,7 +30,7 @@ contract EtherPiggyBank {
     }
 
     function setRegistered(address user, bool status) external onlyOwner {
-        isRegistered[user] = status;
+        require(status || userBalance[user] == 0, "User has active balance");
     }
 
     function depositEth() public payable onlyRegistered {
